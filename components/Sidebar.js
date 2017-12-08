@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { StackNavigator, DrawerNavigator } from "react-navigation";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import {
   Card,
   Avatar,
@@ -52,6 +54,48 @@ const list = [
     icon: "question-answer"
   }
 ];
+
+const HomeScreen = () => (
+  <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <Text>Home Screen</Text>
+  </View>
+);
+
+const ProfileScreen = () => (
+  <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <Text>Profile Screen</Text>
+  </View>
+);
+
+const RootDrawer = DrawerNavigator({
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      drawerLabel: "Home",
+      drawerIcon: ({ tintColor, focused }) => (
+        <Ionicons
+          name={focused ? "ios-home" : "ios-home-outline"}
+          size={26}
+          style={{ color: tintColor }}
+        />
+      )
+    }
+  },
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: {
+      drawerLabel: "Profile",
+      drawerIcon: ({ tintColor, focused }) => (
+        <Ionicons
+          name={focused ? "ios-person" : "ios-person-outline"}
+          size={26}
+          style={{ color: tintColor }}
+        />
+      )
+    }
+  }
+});
+
 export default class Sidebar extends React.Component {
   render() {
     return (
@@ -84,7 +128,9 @@ export default class Sidebar extends React.Component {
           <Col />
         </Grid>
 
-        <Text style={{ marginLeft: "20%", marginTop: "5%" }}>borde.anup@gmail.com</Text>
+        <Text style={{ marginLeft: "20%", marginTop: "5%" }}>
+          borde.anup@gmail.com
+        </Text>
 
         <List>
           {list.map((item, i) => (
